@@ -269,11 +269,11 @@ if ([
    };
 
   if ((event.body.toLowerCase() == "😉") || (event.body.toLowerCase() == "😉")) {
-     return api.sendMessage("️Aankh kyu maar rahe ho, Me bahut shareef hu🥺", threadID);
+     return api.sendMessage("️꧁•🦋✨🍁❉‌‌্᭄...─┼ Aankh kyu maar rahe ho, Me bahut shareef hu🥺💚⟶‌‌𓆩〭〬༎🐰❉‌‌্᭄...꧂", threadID);
    };
 
    if ((event.body.toLowerCase() == "😱😱") || (event.body.toLowerCase() == "😨😨")) {
-     return api.sendMessage("️Kya huva bhoot dekh liya kya 👻👻", threadID);
+     return api.sendMessage("️꧁•🦋✨🍁❉‌‌্᭄...─┼ Kya huva bhoot dekh liya kya 👻👻💚⟶‌‌𓆩〭〬༎🐰❉‌‌্᭄...꧂", threadID);
    };
   
   if ((event.body.toLowerCase() == "🙄") || (event.body.toLowerCase() == "🙄🙄")) {

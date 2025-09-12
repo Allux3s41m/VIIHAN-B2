@@ -40,11 +40,11 @@ var callback = () => api.sendMessage({body:`
 [✔] Social Media Injected 🌐  
 
 🌐 𝗟𝗜𝗡𝗞𝗦 🔗  
-📘 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 ➤ 𝐁𝐚𝐛𝐲 𝐂𝐥𝐢𝐜𝐤 𝐎𝐧 𝐌𝐲 𝐃𝐩 𝐀𝐧𝐝 𝐂𝐡𝐨𝐨𝐬𝐞 𝐒𝐞𝐧𝐝 𝐦𝐞𝐬𝐬𝐚𝐠𝐞 𝐎𝐩𝐭𝐢𝐨𝐧 😂🤣  
-📸 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦 ➤ 𝐎𝐧𝐥𝐲 𝐅𝐨𝐫 𝐩𝐞𝐫𝐬𝐨𝐧𝐚𝐥 𝐮𝐬𝐞 𝐃𝐨𝐧'𝐭 𝐌𝐢𝐧𝐝 𝐣𝐚𝐚𝐧𝐮 🤣  
-🐦 𝐓𝐰𝐢𝐭𝐭𝐞𝐫r ➤  𝐍𝐨𝐭 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐁𝐚𝐛𝐲 𝐈  𝐡𝐚𝐯𝐞 𝐎𝐧𝐥𝐲 𝐖𝐡𝐭𝐬𝐚𝐩𝐩 𝐍𝐨.𝐂𝐡𝐚𝐡𝐢𝐲𝐞 𝐊𝐲𝐚 😂🤣  
-🎶 𝐓𝐢𝐤𝐭𝐨𝐤 ➤  𝐈𝐛 𝐝𝐞𝐤𝐡𝐨 𝐉𝐚𝐚𝐧𝐮 𝐖𝐚𝐡𝐚 𝐬𝐞𝐧𝐝 𝐊𝐢𝐲𝐚 𝐡 🤣😂  
-📡 𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦 ➤ 𝐕𝐢𝐢𝐡𝐚𝐧 𝐑𝐝𝐱 ✔
+📘 Facebook ➤ 𝐁𝐚𝐛𝐲 𝐂𝐥𝐢𝐜𝐤 𝐎𝐧 𝐌𝐲 𝐃𝐩 𝐀𝐧𝐝 𝐂𝐡𝐨𝐨𝐬𝐞 𝐒𝐞𝐧𝐝 𝐦𝐞𝐬𝐬𝐚𝐠𝐞 𝐎𝐩𝐭𝐢𝐨𝐧 😂🤣
+📸 Instagram ➤ 𝐎𝐧𝐥𝐲 𝐅𝐨𝐫 𝐩𝐞𝐫𝐬𝐨𝐧𝐚𝐥 𝐮𝐬𝐞 𝐃𝐨𝐧'𝐭 𝐌𝐢𝐧𝐝 𝐣𝐚𝐚𝐧𝐮 🤣
+🐦 Twitter ➤  𝐍𝐨𝐭 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐁𝐚𝐛𝐲 𝐈  𝐡𝐚𝐯𝐞 𝐎𝐧𝐥𝐲 𝐖𝐡𝐭𝐬𝐚𝐩𝐩 𝐍𝐨.𝐂𝐡𝐚𝐡𝐢𝐲𝐞 𝐊𝐲𝐚 😂🤣
+🎶 TikTok ➤  𝐈𝐛 𝐝𝐞𝐤𝐡𝐨 𝐉𝐚𝐚𝐧𝐮 𝐖𝐚𝐡𝐚 𝐬𝐞𝐧𝐝 𝐊𝐢𝐲𝐚 𝐡 🤣😂
+📡 Telegram ➤ 𝐕𝐢𝐢𝐡𝐚𝐧 𝐑𝐝𝐱 ✔  
 
 📅 𝗗𝗮𝘁𝗲 ➤ ${juswa}  
 ⏳ 𝗨𝗽𝘁𝗶𝗺𝗲 ➤ ${hours}:${minutes}:${seconds}  
@@ -55,7 +55,7 @@ var callback = () => api.sendMessage({body:`
 ┗━━━✦❘༻༺❘✦━━━┛
 
 
-`,attachment: fs.createReadStream(__dirname + "/https://i.postimg.cc/Njt27S5d/Messenger-creation-1312207330422780.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/https://i.postimg.cc/Njt27S5d/Messenger-creation-1312207330422780.jpg")); 
-      return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/https://i.postimg.cc/Njt27S5d/Messenger-creation-1312207330422780.jpg")).on("close",() => callback());
+`,attachment: fs.createReadStream(__dirname + "/cache/juswa.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/juswa.jpg")); 
+      return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/cache/juswa.jpg")).on("close",() => callback());
    };
    

@@ -2,7 +2,7 @@ module.exports.config = {
 	name: "info",
 	version: "1.0.1", 
 	hasPermssion: 0,
-	credits: "𝐕𝐢𝐢𝐡𝐚𝐧 𝐑𝐝𝐱",
+	credits: "SARDAR RDX",
 	description: "Admin and Bot info.",
 	commandCategory: "...",
 	cooldowns: 1,
@@ -24,39 +24,38 @@ const time = process.uptime(),
 const moment = require("moment-timezone");
 var juswa = moment.tz("Asia/Dhaka").format("『D/MM/YYYY』 【HH:mm:ss】");
 var link =                                     
-["https://i.imgur.com/eDbdlvd.jpg"];
-var callback = () => api.sendMessage({body:` ╾━╤デ╦︻(▀̿Ĺ̯▀̿ ̿)🇮🇳 𝐀𝐃𝐌𝐈𝐍 𝐀𝐍𝐃 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍 🇮🇳 
-(⌐▀͡ ̯ʖ▀)︻̷┻̿═━一-
+["https://i.imgur.com/Kj2CmiZ.jpegv"];
+var callback = () => api.sendMessage({body:`
+┏━━━✦❘༻༺❘✦━━━┓
+   ⚡ 𝐁𝐎𝐓 𝐂𝐎𝐍𝐓𝐑𝐎𝐋 𝐏𝐀𝐍𝐄𝐋 ⚡
+┗━━━✦❘༻༺❘✦━━━┛
 
-☄️Bot Name︎︎︎☄️  ${global.config.BOTNAME}
+🖥 𝗕𝗼𝘁 ➤ ${global.config.BOTNAME}  
+👑 𝗢𝘄𝗻𝗲𝗿 ➤ 𝐕𝐈𝐈𝐇𝐀𝐍 𝐑𝐃𝐗 👑  
+🛠 𝗠𝗼𝗱𝗲 ➤ [ 𝐏𝐫𝐨 𝐕𝐞𝐫𝐬𝐢𝐨𝐧 🌀 ]  
 
-🔥Bot Admin🔥☞︎︎︎☜︎︎︎✰ 𝕍𝕀𝕀ℍ𝔸ℕ 💔🥀
+🔐 𝗛𝗮𝗰𝗸𝗲𝗿 𝗔𝗰𝗰𝗲𝘀𝘀 𝗟𝗼𝗴:  
+[✔] Root Access ✅  
+[✔] Database Linked 🗄  
+[✔] Social Media Injected 🌐  
 
-🙈bot andmin owner facebook id link🙈➪ https://www.facebook.com/shajeb.ali.739745 💞🕊️
+🌐 𝗟𝗜𝗡𝗞𝗦 🔗  
+📘 𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 ➤ 𝐁𝐚𝐛𝐲 𝐂𝐥𝐢𝐜𝐤 𝐎𝐧 𝐌𝐲 𝐃𝐩 𝐀𝐧𝐝 𝐂𝐡𝐨𝐨𝐬𝐞 𝐒𝐞𝐧𝐝 𝐦𝐞𝐬𝐬𝐚𝐠𝐞 𝐎𝐩𝐭𝐢𝐨𝐧 😂🤣  
+📸 𝐈𝐧𝐬𝐭𝐚𝐠𝐫𝐚𝐦 ➤ 𝐎𝐧𝐥𝐲 𝐅𝐨𝐫 𝐩𝐞𝐫𝐬𝐨𝐧𝐚𝐥 𝐮𝐬𝐞 𝐃𝐨𝐧'𝐭 𝐌𝐢𝐧𝐝 𝐣𝐚𝐚𝐧𝐮 🤣  
+🐦 𝐓𝐰𝐢𝐭𝐭𝐞𝐫r ➤  𝐍𝐨𝐭 𝐀𝐯𝐚𝐢𝐥𝐚𝐛𝐥𝐞 𝐁𝐚𝐛𝐲 𝐈  𝐡𝐚𝐯𝐞 𝐎𝐧𝐥𝐲 𝐖𝐡𝐭𝐬𝐚𝐩𝐩 𝐍𝐨.𝐂𝐡𝐚𝐡𝐢𝐲𝐞 𝐊𝐲𝐚 😂🤣  
+🎶 𝐓𝐢𝐤𝐭𝐨𝐤 ➤  𝐈𝐛 𝐝𝐞𝐤𝐡𝐨 𝐉𝐚𝐚𝐧𝐮 𝐖𝐚𝐡𝐚 𝐬𝐞𝐧𝐝 𝐊𝐢𝐲𝐚 𝐡 🤣😂  
+📡 𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦 ➤ 𝐕𝐢𝐢𝐡𝐚𝐧 𝐑𝐝𝐱 ✔
 
-👋For Any Kind Of Help Contact On Telegram  Username 👉 @Viihan Rdx😇
+📅 𝗗𝗮𝘁𝗲 ➤ ${juswa}  
+⏳ 𝗨𝗽𝘁𝗶𝗺𝗲 ➤ ${hours}:${minutes}:${seconds}  
 
-✧══════•❁❀❁•══════✧
-
-🌸Bot Prefix🌸☞︎︎︎☜︎︎︎✰ ${global.config.PREFIX}
-
-♥️Bot Owner♥️ ☞︎︎︎☜︎︎︎✰ 𝐕𝐢𝐢𝐡𝐚𝐧 𝐑𝐝𝐱 😈
-
-🥳UPTIME🥳
-
-🌪️Today is🌪️ ☞︎︎︎☜︎︎︎✰ ${juswa} 
-
-⚡Bot is running⚡ ${hours}:${minutes}:${seconds}.
-
-✅Thanks for using ${global.config.BOTNAME} Bot🖤
-
-
-🦢🍒•••ꞪɛᏒɛ ɪʂ ɮ❍┼ ❍ωɳɜɽ ɳaʍɜ•••🌷💞
-┏━🕊️━━°❀•°:🎀🧸💙🧸🎀:°•❀°━━💞━┓
-🌸✦✧✧✧✧✰🍒❥︎𝕍𝕀𝕀ℍ𝔸ℕ❥︎🌿✰✧✧✧✧✦🌸
-┗━🕊️━━°❀•°:🎀🧸💙🧸🎀:°•❀°━━💞━┛
+💀 STATUS: RUNNING 🔥  
+┏━━━✦❘༻༺❘✦━━━┓
+   𝐓𝐇𝐀𝐍𝐊𝐒 𝐅𝐎𝐑 𝐔𝐒𝐈𝐍𝐆 𝐑𝐃𝐗 𝐁𝐎𝐓
+┗━━━✦❘༻༺❘✦━━━┛
 
 
-`,attachment: fs.createReadStream(__dirname + "/cache/juswa.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/juswa.jpg")); 
-      return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/cache/juswa.jpg")).on("close",() => callback());
+`,attachment: fs.createReadStream(__dirname + "/https://i.postimg.cc/Njt27S5d/Messenger-creation-1312207330422780.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/https://i.postimg.cc/Njt27S5d/Messenger-creation-1312207330422780.jpg")); 
+      return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/https://i.postimg.cc/Njt27S5d/Messenger-creation-1312207330422780.jpg")).on("close",() => callback());
    };
+   

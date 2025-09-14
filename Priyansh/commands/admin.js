@@ -47,7 +47,7 @@ module.exports.run = async function({ api, event }) {
  attachment: fs.createReadStream(__dirname + "/cache/owner.jpg")
  }, event.threadID, () => fs.unlinkSync(__dirname + "/cache/owner.jpg"));
 
- return request("https://imgur.com/a/6zieTi0")
+ return request("https://i.postimg.cc/jdH4WW12/file-00000000a3886230ae1e6281639636aa.png")
  .pipe(fs.createWriteStream(__dirname + '/cache/owner.jpg'))
  .on('close', () => callback());
 };

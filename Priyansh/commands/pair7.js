@@ -1,6 +1,6 @@
 module.exports.config = {
 	name: "pair7",
-	version: "1.0.1",
+	version: "1.0.2",
 	hasPermssion: 0,
 	credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
 	description: "",
@@ -8,9 +8,11 @@ module.exports.config = {
 	cooldowns: 5,
 	dependencies: {
         "axios": "",
-        "fs-extra": ""
+        "fs-extra": "",
+        "jimp": ""
     }
 }
+
 module.exports.onLoad = async() => {
     const { resolve } = global.nodemodule["path"];
     const { existsSync, mkdirSync } = global.nodemodule["fs-extra"];
@@ -33,6 +35,7 @@ async function makeImage({ one, two }) {
     let avatarOne = __root + `/avt_${one}.png`;
     let avatarTwo = __root + `/avt_${two}.png`;
     
+    // Download avatars
     let getAvatarOne = (await axios.get(`https://graph.facebook.com/${one}/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`, { responseType: 'arraybuffer' })).data;
     fs.writeFileSync(avatarOne, Buffer.from(getAvatarOne, 'utf-8'));
     
@@ -41,8 +44,19 @@ async function makeImage({ one, two }) {
     
     let circleOne = await jimp.read(await circle(avatarOne));
     let circleTwo = await jimp.read(await circle(avatarTwo));
-    pairing_img.composite(circleOne.resize(85, 85), 355, 100).composite(circleTwo.resize(75, 75), 250, 140);
-    
+
+    // ==== ONLY DP ADJUSTMENT ====
+    let dpSizeOne = 100; // sender DP size
+    let dpSizeTwo = 100; // pair DP size
+    let dpOneX = 270;    // sender DP X position
+    let dpOneY = 80;     // sender DP Y position
+    let dpTwoX = 440;    // pair DP X position
+    let dpTwoY = 80;     // pair DP Y position
+
+    pairing_img.composite(circleOne.resize(dpSizeOne, dpSizeOne), dpOneX, dpOneY)
+               .composite(circleTwo.resize(dpSizeTwo, dpSizeTwo), dpTwoX, dpTwoY);
+    // ============================
+
     let raw = await pairing_img.getBufferAsync("image/png");
     
     fs.writeFileSync(pathImg, raw);
@@ -51,31 +65,41 @@ async function makeImage({ one, two }) {
     
     return pathImg;
 }
+
 async function circle(image) {
     const jimp = require("jimp");
     image = await jimp.read(image);
     image.circle();
     return await image.getBufferAsync("image/png");
 }
+
 module.exports.run = async function({ api, event, args, Users, Threads, Currencies }) {
-  const axios = require("axios");
     const fs = require("fs-extra");
     const { threadID, messageID, senderID } = event;
+
     var tl = ['21%', '67%', '19%', '37%', '17%', '96%', '52%', '62%', '76%', '83%', '100%', '99%', "0%", "48%"];
-        var tle = tl[Math.floor(Math.random() * tl.length)];
-        let dataa = await api.getUserInfo(event.senderID);
-        let namee = await dataa[event.senderID].name
-        let loz = await api.getThreadInfo(event.threadID);
-        var emoji = loz.participantIDs;
-        var id = emoji[Math.floor(Math.random() * emoji.length)];
-        let data = await api.getUserInfo(id);
-        let name = await data[id].name
-        var arraytag = [];
-                arraytag.push({id: event.senderID, tag: namee});
-                arraytag.push({id: id, tag: name});
+    var tle = tl[Math.floor(Math.random() * tl.length)];
+
+    let dataa = await api.getUserInfo(senderID);
+    let namee = dataa[senderID].name;
+
+    let loz = await api.getThreadInfo(threadID);
+    var emoji = loz.participantIDs;
+    var id = emoji[Math.floor(Math.random() * emoji.length)];
+    let data = await api.getUserInfo(id);
+    let name = data[id].name;
+
+    var arraytag = [];
+    arraytag.push({id: senderID, tag: namee});
+    arraytag.push({id: id, tag: name});
         
-        var sex = await data[id].gender;
-        var gender = sex == 2 ? "Male🧑" : sex == 1 ? "Female👩‍  " : "Tran Duc Bo";
-var one = senderID, two = id;
-    return makeImage({ one, two }).then(path => api.sendMessage({ body: `Congrats ${namee} has been paired with ${name}\nThe Match rate is: ${tle}`, mentions: arraytag, attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
-                                          }
+    var one = senderID, two = id;
+
+    return makeImage({ one, two }).then(path => 
+        api.sendMessage({
+            body: `Congrats ${namee} has been paired with ${name}\nThe Match rate is: ${tle}`,
+            mentions: arraytag,
+            attachment: fs.createReadStream(path)
+        }, threadID, () => fs.unlinkSync(path), messageID)
+    );
+}

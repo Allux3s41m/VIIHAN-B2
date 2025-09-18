@@ -1,6 +1,6 @@
 module.exports.config = {
 	name: "pair7",
-	version: "1.0.2",
+	version: "1.0.3",
 	hasPermssion: 0,
 	credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
 	description: "",
@@ -45,17 +45,17 @@ async function makeImage({ one, two }) {
     let circleOne = await jimp.read(await circle(avatarOne));
     let circleTwo = await jimp.read(await circle(avatarTwo));
 
-    // ==== ONLY DP ADJUSTMENT ====
-    let dpSizeOne = 100; // sender DP size
-    let dpSizeTwo = 100; // pair DP size
-    let dpOneX = 270;    // sender DP X position
-    let dpOneY = 80;     // sender DP Y position
+    // ==== DP SIZE & POSITION FIX ====
+    let dpSizeOne = 120; // sender DP size
+    let dpSizeTwo = 120; // pair DP size
+    let dpOneX = 260;    // sender DP X position
+    let dpOneY = 100;    // sender DP Y position
     let dpTwoX = 440;    // pair DP X position
-    let dpTwoY = 80;     // pair DP Y position
+    let dpTwoY = 100;    // pair DP Y position
 
     pairing_img.composite(circleOne.resize(dpSizeOne, dpSizeOne), dpOneX, dpOneY)
                .composite(circleTwo.resize(dpSizeTwo, dpSizeTwo), dpTwoX, dpTwoY);
-    // ============================
+    // ================================
 
     let raw = await pairing_img.getBufferAsync("image/png");
     

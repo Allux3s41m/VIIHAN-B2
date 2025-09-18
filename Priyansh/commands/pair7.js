@@ -46,8 +46,8 @@ async function makeImage({ one, two }) {
     let circleTwo = await jimp.read(await circle(avatarTwo));
 
     // ==== DP SIZE & POSITION FIX ====
-    let dpWidth = 1080;
-    let dpHeight = 1083;
+    let dpWidth = 400;
+    let dpHeight = 403;
 
     // Adjust positions according to frame for perfect alignment
     let dpOneX = 350; // sender DP X

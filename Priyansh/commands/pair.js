@@ -1,6 +1,6 @@
 module.exports.config = {
   name: "pair",
-  version: "1.0.1", 
+  version: "1.0.2", 
   hasPermssion: 0,
   credits: "🌺 𝐕𝐈𝐈𝐇𝐀𝐍➺𝐑𝐃𝐗",
   description: "pairing",
@@ -25,9 +25,7 @@ module.exports.run = async function({ api, event, Threads, Users }) {
     const gifCute = [
         "https://i.pinimg.com/originals/42/9a/89/429a890a39e70d522d52c7e52bce8535.gif",
         "https://i.ibb.co/r2jdFqn9/HvPID5q.gif",
-        "https://i.pinimg.com/originals/9c/94/78/9c9478bb26b2160733ce0c10a0e10d10.gif",
-        "https://i.pinimg.com/originals/9d/0d/38/9d0d38c79b9fcf05f3ed71697039d27a.gif",
-        "https://i.ibb.co/DPCPZ5d6/BWji8Em.gif"
+        "https://i.pinimg.com/originals/9c/94/78/9c9478bb26b2160733ce0c10a0e10d10.gif"
     ];
 
     arraytag.push({id: event.senderID, tag: namee});
@@ -55,10 +53,16 @@ module.exports.run = async function({ api, event, Threads, Users }) {
     // Draw frame
     ctx.drawImage(frame, 0, 0, frame.width, frame.height);
 
-    // Adjust DP1 (left) and DP2 (right)
-    let dpSize = Math.min(frame.width / 4, frame.height / 4); // size for both DPs
-    ctx.drawImage(dp1, frame.width * 0.15, frame.height * 0.3, dpSize, dpSize);
-    ctx.drawImage(dp2, frame.width * 0.65, frame.height * 0.3, dpSize, dpSize);
+    // ==== ONLY DP ADJUSTMENT ====
+    let dpSize = Math.min(frame.width / 4.5, frame.height / 4.5); // adjust size for left/right DP
+    let dp1X = frame.width * 0.15;
+    let dp1Y = frame.height * 0.3;
+    let dp2X = frame.width * 0.65;
+    let dp2Y = dp1Y;
+
+    ctx.drawImage(dp1, dp1X, dp1Y, dpSize, dpSize);
+    ctx.drawImage(dp2, dp2X, dp2Y, dpSize, dpSize);
+    // ============================
 
     // Save final image
     let finalPath = __dirname + "/cache/finalPair.png";
@@ -84,13 +88,4 @@ module.exports.run = async function({ api, event, Threads, Users }) {
 𝒔𝒐𝒎𝒆𝒐𝒏𝒆 𝒑𝒆𝒓𝒇𝒆𝒄𝒕, 𝒃𝒖𝒕 𝒔𝒆𝒆𝒊𝒏𝒈 
 𝒂𝒏 𝒊𝒎𝒑𝒆𝒓𝒇𝒆𝒄𝒕 𝒑𝒆𝒓𝒔𝒐𝒏 𝒑𝒆𝒓𝒇𝒆𝒄𝒕𝒍𝒚" 🌹
 
-✨ 𝑴𝒂𝒚 𝒚𝒐𝒖𝒓 𝒍𝒐𝒗𝒆 𝒔𝒕𝒐𝒓𝒚 𝒃𝒆 𝒂𝒔 
-𝒃𝒆𝒂𝒖𝒕𝒊𝒇𝒖𝒍 𝒂𝒔 𝒂 𝒇𝒂𝒊𝒓𝒚𝒕𝒂𝒍𝒆 ✨
-
-💝 🌺 𝗢𝗪𝗡𝗘𝗥 👑➪🦋⃟⃟ ⍣⃝ 𝐕𝐈𝐈𝐇𝐀𝐍➺𝐑𝐃𝐗༆𓆪⃟⍨⃝`,
-        mentions: arraytag,
-        attachment: imglove
-    };
-
-    return api.sendMessage(msg, event.threadID, event.messageID);
-};
+✨ 𝑴𝒂𝒚 𝒚𝒐𝒖𝒓 𝒍𝒐𝒗𝒆 𝒔𝒕𝒐

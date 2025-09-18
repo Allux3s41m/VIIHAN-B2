@@ -50,9 +50,9 @@ async function makeImage({ one, two }) {
     let dpHeight = 255;
 
     // Adjust positions according to frame for perfect alignment
-    let dpOneX = 450; // sender DP X
+    let dpOneX = 200; // sender DP X
     let dpOneY = 250; // sender DP Y
-    let dpTwoX = 1500; // pair DP X
+    let dpTwoX = 700; // pair DP X
     let dpTwoY = 250;  // pair DP Y
 
     pairing_img.composite(circleOne.resize(dpWidth, dpHeight), dpOneX, dpOneY)

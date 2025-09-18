@@ -1,58 +1,107 @@
-const fs = require("fs");
-const Canvas = require("canvas");
-const path = require("path");
-
 module.exports.config = {
-    name: "pair",
-    version: "1.0.11",
-    hasPermssion: 0,
-    credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡",
-    description: "Pair two users with frame and DP",
-    commandCategory: "Fun"
-};
-
-module.exports.run = async function({ event, api }) {
-    try {
-        // Paths
-        const framePath = path.join(__dirname, "cache", "frame.png"); // existing frame
-        const userDPPath = path.join(__dirname, "cache", "userDP.png"); // user DP
-
-        // Load images
-        const frame = await Canvas.loadImage(framePath);
-        const userDP = await Canvas.loadImage(userDPPath);
-
-        // Canvas 1080x1083
-        const canvas = Canvas.createCanvas(1080, 1083);
-        const ctx = canvas.getContext("2d");
-
-        // Draw frame (unchanged)
-        ctx.drawImage(frame, 0, 0, canvas.width, canvas.height);
-
-        // DP circular mask & alignment
-        const dpSize = 200; // DP diameter
-        const dpX = 440; // adjust X to center in frame
-        const dpY = 300; // adjust Y to center in frame
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(dpX + dpSize / 2, dpY + dpSize / 2, dpSize / 2, 0, Math.PI * 2, true);
-        ctx.closePath();
-        ctx.clip();
-
-        // Draw DP
-        ctx.drawImage(userDP, dpX, dpY, dpSize, dpSize);
-        ctx.restore();
-
-        // Save final image
-        const outPath = path.join(__dirname, "cache", "pair_final.png");
-        const buffer = canvas.toBuffer("image/png");
-        fs.writeFileSync(outPath, buffer);
-
-        // Send message
-        api.sendMessage({ body: "Pair image ready!", attachment: fs.createReadStream(outPath) }, event.threadID);
-
-    } catch (err) {
-        console.error(err);
-        api.sendMessage("Error generating pair image!", event.threadID);
+	name: "pair7",
+	version: "1.0.4",
+	hasPermssion: 0,
+	credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
+	description: "",
+	commandCategory: "Picture",
+	cooldowns: 5,
+	dependencies: {
+        "axios": "",
+        "fs-extra": "",
+        "jimp": ""
     }
-};
+}
+
+module.exports.onLoad = async() => {
+    const { resolve } = global.nodemodule["path"];
+    const { existsSync, mkdirSync } = global.nodemodule["fs-extra"];
+    const { downloadFile } = global.utils;
+    const dirMaterial = __dirname + `/cache/canvas/`;
+    const path = resolve(__dirname, 'cache/canvas', 'pairing.jpg');
+    if (!existsSync(dirMaterial + "canvas")) mkdirSync(dirMaterial, { recursive: true });
+    if (!existsSync(path)) await downloadFile("https://i.pinimg.com/736x/15/fa/9d/15fa9d71cdd07486bb6f728dae2fb264.jpg", path);
+}
+
+async function makeImage({ one, two }) {
+    const fs = global.nodemodule["fs-extra"];
+    const path = global.nodemodule["path"];
+    const axios = global.nodemodule["axios"]; 
+    const jimp = global.nodemodule["jimp"];
+    const __root = path.resolve(__dirname, "cache", "canvas");
+
+    let pairing_img = await jimp.read(__root + "/pairing.jpg");
+    let pathImg = __root + `/pairing_${one}_${two}.png`;
+    let avatarOne = __root + `/avt_${one}.png`;
+    let avatarTwo = __root + `/avt_${two}.png`;
+    
+    // Download avatars
+    let getAvatarOne = (await axios.get(`https://graph.facebook.com/${one}/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`, { responseType: 'arraybuffer' })).data;
+    fs.writeFileSync(avatarOne, Buffer.from(getAvatarOne, 'utf-8'));
+    
+    let getAvatarTwo = (await axios.get(`https://graph.facebook.com/${two}/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`, { responseType: 'arraybuffer' })).data;
+    fs.writeFileSync(avatarTwo, Buffer.from(getAvatarTwo, 'utf-8'));
+    
+    let circleOne = await jimp.read(await circle(avatarOne));
+    let circleTwo = await jimp.read(await circle(avatarTwo));
+
+    // ==== DP SIZE & POSITION FIX ====
+    let dpWidth = 1080;
+    let dpHeight = 1083;
+
+    // Adjust positions according to frame for perfect alignment
+    let dpOneX = 350; // sender DP X
+    let dpOneY = 200; // sender DP Y
+    let dpTwoX = 1500; // pair DP X
+    let dpTwoY = 200;  // pair DP Y
+
+    pairing_img.composite(circleOne.resize(dpWidth, dpHeight), dpOneX, dpOneY)
+               .composite(circleTwo.resize(dpWidth, dpHeight), dpTwoX, dpTwoY);
+    // ================================
+
+    let raw = await pairing_img.getBufferAsync("image/png");
+    
+    fs.writeFileSync(pathImg, raw);
+    fs.unlinkSync(avatarOne);
+    fs.unlinkSync(avatarTwo);
+    
+    return pathImg;
+}
+
+async function circle(image) {
+    const jimp = require("jimp");
+    image = await jimp.read(image);
+    image.circle();
+    return await image.getBufferAsync("image/png");
+}
+
+module.exports.run = async function({ api, event, args, Users, Threads, Currencies }) {
+    const fs = require("fs-extra");
+    const { threadID, messageID, senderID } = event;
+
+    var tl = ['21%', '67%', '19%', '37%', '17%', '96%', '52%', '62%', '76%', '83%', '100%', '99%', "0%", "48%"];
+    var tle = tl[Math.floor(Math.random() * tl.length)];
+
+    let dataa = await api.getUserInfo(senderID);
+    let namee = dataa[senderID].name;
+
+    let loz = await api.getThreadInfo(threadID);
+    var emoji = loz.participantIDs;
+    var id = emoji[Math.floor(Math.random() * emoji.length)];
+    let data = await api.getUserInfo(id);
+    let name = data[id].name;
+
+    var arraytag = [];
+    arraytag.push({id: senderID, tag: namee});
+    arraytag.push({id: id, tag: name});
+        
+    var one = senderID, two = id;
+
+    return makeImage({ one, two }).then(path => 
+        api.sendMessage({
+            body: `Congrats ${namee} has been paired with ${name}\nThe Match rate is: ${tle}`,
+            mentions: arraytag,
+            attachment: fs.createReadStream(path)
+        }, threadID, () => fs.unlinkSync(path), messageID)
+    );
+}

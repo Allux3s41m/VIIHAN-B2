@@ -1,12 +1,12 @@
 module.exports.config = {
-	name: "pair7",
-	version: "1.0.4",
-	hasPermssion: 0,
-	credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
-	description: "",
-	commandCategory: "Picture",
-	cooldowns: 5,
-	dependencies: {
+    name: "pair7",
+    version: "1.0.5",
+    hasPermssion: 0,
+    credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭 + Updated by ChatGPT",
+    description: "Pair DP maker with perfect circle alignment",
+    commandCategory: "Picture",
+    cooldowns: 5,
+    dependencies: {
         "axios": "",
         "fs-extra": "",
         "jimp": ""
@@ -45,19 +45,23 @@ async function makeImage({ one, two }) {
     let circleOne = await jimp.read(await circle(avatarOne));
     let circleTwo = await jimp.read(await circle(avatarTwo));
 
-    // ==== DP SIZE & POSITION FIX ====
-    let dpWidth = 250;
-    let dpHeight = 255;
+    // ==== DP SIZE & POSITION FIX (Dynamic) ====
+    let frameWidth = pairing_img.bitmap.width;
+    let frameHeight = pairing_img.bitmap.height;
 
-    // Adjust positions according to frame for perfect alignment
-    let dpOneX = 25; // sender DP X
-    let dpOneY = 50; // sender DP Y
-    let dpTwoX = 75; // pair DP X
-    let dpTwoY = 50;  // pair DP Y
+    // DP size relative to frame
+    let dpWidth = Math.floor(frameWidth * 0.25);   // 25% of frame width
+    let dpHeight = dpWidth; // square
+
+    // Positions (percentage of frame)
+    let dpOneX = Math.floor(frameWidth * 0.12);  // left circle X
+    let dpOneY = Math.floor(frameHeight * 0.35); // left circle Y
+    let dpTwoX = Math.floor(frameWidth * 0.72);  // right circle X
+    let dpTwoY = Math.floor(frameHeight * 0.35); // right circle Y
 
     pairing_img.composite(circleOne.resize(dpWidth, dpHeight), dpOneX, dpOneY)
                .composite(circleTwo.resize(dpWidth, dpHeight), dpTwoX, dpTwoY);
-    // ================================
+    // ==========================================
 
     let raw = await pairing_img.getBufferAsync("image/png");
     

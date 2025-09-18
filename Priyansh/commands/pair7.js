@@ -46,14 +46,14 @@ async function makeImage({ one, two }) {
     let circleTwo = await jimp.read(await circle(avatarTwo));
 
     // ==== DP SIZE & POSITION FIX ====
-    let dpWidth = 200;
-    let dpHeight = 205;
+    let dpWidth = 250;
+    let dpHeight = 255;
 
     // Adjust positions according to frame for perfect alignment
-    let dpOneX = 350; // sender DP X
-    let dpOneY = 200; // sender DP Y
+    let dpOneX = 450; // sender DP X
+    let dpOneY = 250; // sender DP Y
     let dpTwoX = 1500; // pair DP X
-    let dpTwoY = 200;  // pair DP Y
+    let dpTwoY = 250;  // pair DP Y
 
     pairing_img.composite(circleOne.resize(dpWidth, dpHeight), dpOneX, dpOneY)
                .composite(circleTwo.resize(dpWidth, dpHeight), dpTwoX, dpTwoY);
